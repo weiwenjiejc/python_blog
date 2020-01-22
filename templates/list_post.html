@@ -1,0 +1,41 @@
+{% extends 'nav.html' %}
+
+
+{% block body_nav %}
+    <ul id="list_posts">
+        {% for post in post_list %}
+            <li>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <a href="">{{ post['p_title'] }}</a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div>{{ post['p_content'] }}</div>
+                        <div>{{ post['p_datetime'] }}</div>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+
+    </ul>
+
+    <ul class="pagination">
+        <li><a href="#">&laquo;</a></li>
+
+        {#    {% for page in range(1,pages|add:1) %}#}
+        {% for page in range(1,pages) %}
+            {% if page_num == page %}
+                <li class="active"><a href="/post_page?page={{ page }}">{{ page }}</a></li>
+            {% else %}
+                <li><a href="/post_page?page={{ page }}">{{ page }}</a></li>
+            {% endif %}
+        {% endfor %}
+        <li><a href="#">&raquo;</a></li>
+    </ul>
+    <script>
+        $(document).ready(function () {
+        })
+    </script>
+{% endblock %}
